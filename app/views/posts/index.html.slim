@@ -1,0 +1,29 @@
+- if user_signed_in?
+	h1 
+		b Welcome 
+		=current_user.email
+
+h2 Listing posts
+
+  
+- @posts.each do |post|
+  div class = "panel panel-default"
+  	div class = "panel-heading"
+	  h3 = post.title
+	
+	div class = "panel-body" 
+		p = post.content
+	  	b Autor: 
+	  	= post.user.email
+	  	br
+	  	- if user_signed_in?
+	  		- if ((current_user.email == post.user.email) or (current_user.id == 1))
+			 	br
+				= link_to 'Edit', edit_post_path(post), class: "btn btn-default"
+				= link_to 'Delete', post, data: {:confirm => "Are you sure?"}, :method=>:delete, class: "btn btn-default"
+
+- if user_signed_in?
+	br
+	= link_to 'New Post', new_post_path, class: "btn btn-default"
+br
+br
