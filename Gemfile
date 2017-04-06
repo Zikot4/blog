@@ -62,3 +62,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bootstrap-sass"
 gem "devise"
 gem "slim-rails"
+
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+
+gem 'rails_admin', '~> 1.1.1'
