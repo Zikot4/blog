@@ -1,0 +1,17 @@
+-if commentable.comments.empty? 
+	h4
+		b No Comments Yet, Write The First One
+		
+- else 
+	h4
+		b Comments: 
+		= commentable.comments.size
+		- commentable.comments.each do |comment| 
+			div class = "panel panel-default"
+				div class = "panel-heading"
+					= User.find(comment.user_id).email
+				div class = "panel-footer"
+					= comment.body 
+
+
+	

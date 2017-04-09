@@ -67,3 +67,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 
 gem 'rails_admin', '~> 1.1.1'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"

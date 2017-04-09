@@ -8,8 +8,16 @@ p
   = @post.content
 p
   strong User:
-  = @post.user.email
+  - if @post.user == nil
+  	i This user was removed
+  -else
+  	i
+  		= @post.user.email
 
-= link_to 'Edit', edit_post_path(@post), class: "btn btn-default"
-  	
-= link_to 'Back', posts_path, class: "btn btn-default"
+-if user_signed_in?
+	-if current_user == @post.user
+		= link_to 'Edit', edit_post_path(@post), class: "btn btn-default"  	
+		= link_to 'Back', posts_path, class: "btn btn-default"
+
+= render partial: "/comments/comments", locals: {commentable: @post}
+= render partial: "/comments/form", locals: {commentable: @post}
