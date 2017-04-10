@@ -1,23 +1,25 @@
 p#notice = notice
 
-p
-  strong Title:
-  = @post.title
-p
-  strong Content:
-  = @post.content
-p
-  strong User:
-  - if @post.user == nil
-  	i This user was removed
-  -else
-  	i
-  		= @post.user.email
+div class = "panel panel-default"
+  div class = "panel-heading"
+    h3
+      = @post.title
+  div class = "panel-body"
+    = raw @post.content
+    p
+      strong User:
+      - if @post.user == nil
+          i This user was removed
+      else
+          i
+          	= @post.user.email
 
--if user_signed_in?
-	-if current_user == @post.user
-		= link_to 'Edit', edit_post_path(@post), class: "btn btn-default"  	
-		= link_to 'Back', posts_path, class: "btn btn-default"
+    -if user_signed_in?
+      -if current_user == @post.user
+        = link_to 'Edit', edit_post_path(@post), class: "btn btn-default"
+        = link_to 'Delete', @post, data: {:confirm => "Are you sure?"}, :method=>:delete, class: "btn btn-default"
 
-= render partial: "/comments/comments", locals: {commentable: @post}
-= render partial: "/comments/form", locals: {commentable: @post}
+    = link_to 'Back', posts_path, class: "btn btn-default"
+  div class = "panel-footer"
+    = render partial: "/comments/comments", locals: {commentable: @post}
+    = render partial: "/comments/form", locals: {commentable: @post}

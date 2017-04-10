@@ -1,37 +1,42 @@
 h2 Listing posts
 
-= will_paginate @posts, renderer: BootstrapPagination::Rails,previous_label: 'Newer',next_label: 'Older',inner_window: 2,outer_window: 1 
+= will_paginate @posts, renderer: BootstrapPagination::Rails,previous_label: 'Newer',next_label: 'Older',inner_window: 2,outer_window: 1
 
 br
 
 - if user_signed_in?
 	= link_to 'New Post', new_post_path, class: "btn btn-default"
-	br  
+	br
 br
 
 
 - @posts.each do |post|
   	div class = "panel panel-default"
-	  	div class = "panel-heading"
+		div class = "panel-heading"
 			h3
-				= link_to post.title, post
-		
-		div class = "panel-body" 
-			p = post.content
-		  	b Author: 
+				-if post.title == ""
+					=link_to %s"#{Title_not_found}", post
+				- else
+					= link_to post.title, post
+
+		div class = "panel-body"
+			p = raw post.content
+		  	b Author:
 			- if post.user.nil?
 				i This User was removed
 			- else
 			  	i
 			  		= post.user.email
-		  	
-		  		
+
+
 		  	br
 		  	- if user_signed_in?
 		  		- if (current_user == post.user)
 				 	br
 					= link_to 'Edit', edit_post_path(post), class: "btn btn-default"
 					= link_to 'Delete', post, data: {:confirm => "Are you sure?"}, :method=>:delete, class: "btn btn-default"
-						
 
+
+br
+= will_paginate @posts, renderer: BootstrapPagination::Rails,previous_label: 'Newer',next_label: 'Older',inner_window: 2,outer_window: 1
 br

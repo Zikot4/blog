@@ -1,17 +1,18 @@
--if commentable.comments.empty? 
+-if commentable.comments.empty?
 	h4
 		b No Comments Yet, Write The First One
-		
-- else 
-	h4
-		b Comments: 
+
+- else
+		b Comments:
 		= commentable.comments.size
-		- commentable.comments.each do |comment| 
-			div class = "panel panel-default"
-				div class = "panel-heading"
+		- commentable.comments.each do |comment|
+			div class = "well well-sm"
+				b
 					= User.find(comment.user_id).email
-				div class = "panel-footer"
-					= comment.body 
-
-
-	
+				br
+				= comment.body
+				-if user_signed_in?
+					-if current_user.id == comment.user_id
+						br
+						=link_to "Edit", edit_post_comment_path(@post,comment), class: "btn btn-default"
+						=link_to "Destroy", post_comment_path(@post,comment), data: {:confirm => "Are you sure?"}, :method=>:delete, class: "btn btn-default"

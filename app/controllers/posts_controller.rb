@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :posts_owner]
+  before_action :posts_owner, only: [:edit,:destroy]
 
   # GET /posts
   # GET /posts.json
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
 
-    
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -71,5 +72,17 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :content, :user_id)
+    end
+
+    def posts_owner
+        catch (:done)  do
+            unless user_signed_in?
+                redirect_to "/404.html"
+                throw :done
+            end
+            unless current_user.id == @post.user_id
+                redirect_to "/404.html"
+            end
+        end
     end
 end
