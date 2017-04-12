@@ -4,6 +4,7 @@ Devise.setup do |config|
 
   config.omniauth :facebook, "1284982391555727", "e872ea9cc10696a7126c4bb97ba2f848"
   config.omniauth :google_oauth2, '1028418578650-hqn59doo7qt56d1b2bidhteh90ak733i.apps.googleusercontent.com','RYHL_jgQq2FBF1gSImTm8ibo'
+  config.omniauth :github, "696e841dc703ddf4131a", "fb0611746b72fdb1e69d7e33a70b82e9ef423148"
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -226,7 +227,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -255,7 +256,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

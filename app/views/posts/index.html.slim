@@ -1,6 +1,10 @@
 h2 Listing posts
 
-= will_paginate @posts, renderer: BootstrapPagination::Rails,previous_label: 'Newer',next_label: 'Older',inner_window: 2,outer_window: 1
+= will_paginate @posts, renderer: BootstrapPagination::Rails,
+						previous_label: 'Newer',
+						next_label: 'Older',
+						inner_window: 2,
+						outer_window: 1
 
 br
 
@@ -28,6 +32,10 @@ br
 			  	i
 			  		= post.user.email
 
+			-unless post.comments.empty?
+				br
+				b
+					=link_to "Comments: "+post.comments.size.to_s,post
 
 		  	br
 		  	- if user_signed_in?
@@ -38,5 +46,9 @@ br
 
 
 br
-= will_paginate @posts, renderer: BootstrapPagination::Rails,previous_label: 'Newer',next_label: 'Older',inner_window: 2,outer_window: 1
+= will_paginate @posts, renderer: BootstrapPagination::Rails
+						,previous_label: 'Newer'
+						,next_label: 'Older'
+						,inner_window: 2
+						,outer_window: 1
 br

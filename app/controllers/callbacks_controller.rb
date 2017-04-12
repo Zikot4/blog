@@ -7,4 +7,5 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
 	alias facebook all
 	alias google_oauth2 all
+	alias github all
 end

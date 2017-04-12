@@ -7,6 +7,10 @@
 		= commentable.comments.size
 		- commentable.comments.each do |comment|
 			div class = "well well-sm"
+				-if User.find(comment.user_id).image.nil?
+					img src = "/photo.jpg" width="50"
+				-else
+					img src = User.find(comment.user_id).image width="50"
 				b
 					= User.find(comment.user_id).email
 				br
