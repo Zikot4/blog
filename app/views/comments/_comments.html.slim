@@ -10,7 +10,7 @@
 				-if User.find(comment.user_id).image.nil?
 					img src = "/photo.jpg" width="50"
 				-else
-					img src = User.find(comment.user_id).image width="50"
+					= image_tag User.find(comment.user_id).image.url(:thumb)
 				b
 					= User.find(comment.user_id).email
 				br

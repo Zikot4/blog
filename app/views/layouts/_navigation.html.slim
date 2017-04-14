@@ -23,6 +23,6 @@ nav class="navbar navbar-default"
 					-if current_user.image.nil?
 						img src = "/photo.jpg" width="50"
 					-else
-						img src = current_user.image.to_s width="50"
+						= image_tag current_user.image.url(:thumb)
          		li
          			= link_to "Log out", destroy_user_session_path, method: :delete
