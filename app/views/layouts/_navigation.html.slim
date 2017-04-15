@@ -20,9 +20,6 @@ nav class="navbar navbar-default"
 				li
                     = link_to current_user.email, edit_user_registration_path
 				li
-					-if current_user.image.nil?
-						img src = "/photo.jpg" width="50"
-					-else
-						= image_tag current_user.image.url(:thumb)
+					= image_tag current_user.image.url(:thumb)
          		li
          			= link_to "Log out", destroy_user_session_path, method: :delete
