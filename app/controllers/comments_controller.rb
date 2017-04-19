@@ -11,15 +11,19 @@ class CommentsController < ApplicationController
 		@comment = @commentable.comments.new comment_params
 		@comment.user_id = current_user.id
 		@comment.save
-		redirect_to @commentable, notice: "Your comment was successfull posted."
+		redirect_to @commentable, notice: "Your comment was successful posted."
 	end
 
 	def edit
 	end
 
 	def update
-		if @comment.update(params[:comment].permit(:body))
-			redirect_to post_path(@post)
+		if @comment.update(params[:comment].permit(:body,:file))
+			if params[:commit] == "update without file"
+				@comment.file = nil
+				@comment.save
+			end
+			redirect_to post_path(@post), notice: "Comment was successfully updated."
 		else
 			render 'edit'
 		end
@@ -27,7 +31,7 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment.destroy
-		redirect_to post_path(@post)
+		redirect_to post_path(@post), notice: "Comment was successfully destroyed."
 	end
 
 private
@@ -41,7 +45,7 @@ private
 	end
 
 	def comment_params
-		params.require(:comment).permit(:body)
+		params.require(:comment).permit(:body,:file)
 	end
 
 	def comment_owmer

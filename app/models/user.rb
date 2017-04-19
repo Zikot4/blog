@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    acts_as_voter
     has_attached_file :image, styles: { medium: "150x150>", thumb: "50x50>" }, :default_url => "/system/users/images/missing/photo_:style.jpg"
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 

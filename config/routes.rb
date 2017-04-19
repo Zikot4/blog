@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   	resources :posts do
+        member do
+            put "like" => "posts#upvote"
+            put "unlike" => "posts#downvote"
+        end
   		resources :comments, module: :posts
 	end
 

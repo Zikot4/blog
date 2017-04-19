@@ -40,11 +40,14 @@ br
 		  	br
 		  	- if user_signed_in?
 		  		- if (current_user == post.user)
-				 	br
-					= link_to 'Edit', edit_post_path(post), class: "btn btn-default"
-					= link_to 'Delete', post, data: {:confirm => "Are you sure?"}, :method=>:delete, class: "btn btn-default"
-
-
+				 	div class="btn-group pull-left" role="group" aria-label="..."
+						= link_to 'Edit', edit_post_path(post), class: "btn btn-default"
+						= link_to 'Delete', post, data: {:confirm => "Are you sure?"}, :method=>:delete, class: "btn btn-default"
+			div class="btn-group pull-right" role="group" aria-label="..."
+				div class=" btn-default"
+					span class="glyphicon glyphicon-thumbs-up"
+					span class="badge"
+						= post.get_upvotes.size
 br
 = will_paginate @posts, renderer: BootstrapPagination::Rails,
 						previous_label: 'Newer',

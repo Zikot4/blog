@@ -1,6 +1,7 @@
-<%= form_for [commentable, Comment.new] do |f| %>
+<%= form_for [commentable, Comment.new], html: { multipart: true } do |f| %>
 	<div class = "form-group">
 		<%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
+		<%= f.file_field :file %>
 	</div>
 	<%= f.submit class: "btn btn-primary" %>
 

@@ -77,5 +77,6 @@ gem 'omniauth-github'
 gem 'ckeditor'
 gem 'paperclip'
 
+gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'bullet', group: 'development'

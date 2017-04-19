@@ -12,6 +12,10 @@
 					= User.find(comment.user_id).email
 				br
 				= comment.body
+				-if comment.file.exists?
+					div class = "imgCenter"
+						br
+						= image_tag comment.file.url(:medium)
 				-if user_signed_in?
 					-if current_user.id == comment.user_id
 						br

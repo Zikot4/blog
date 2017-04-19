@@ -1,0 +1,21 @@
+<%= form_for [@post, @comment], html: { multipart: true } do |f| %>
+	<div class = "form-group">
+		<%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
+		<%if @comment.file.exists?%>
+			<div class="UFICommentPhotoAttachedPreview pas">
+				<span data-testid="ufi_photo_preview_test_id" display="inline">
+					<div class="uiScaledImageContainer" style="width:53px;height:80px;">
+						<%= image_tag @comment.file.url(:thumb) %>
+					</div>
+				</span>
+				<p>Remove Photo
+					<%= f.submit "update without file", class: "btn btn-primary"%>
+				</p>
+			</div>
+
+		<% end %>
+		<%= f.file_field :file%>
+	</div>
+	<%= f.submit :update, class: "btn btn-primary"%>
+
+<% end %>
