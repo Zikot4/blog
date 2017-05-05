@@ -7,7 +7,7 @@
 		= commentable.comments.size
 		- commentable.comments.each do |comment|
 			div class = "well well-sm"
-				= image_tag User.find(comment.user_id).image.url(:thumb)
+				= image_tag User.find(comment.user_id).image.url(:thumb),class: "img-circle"
 				b
 					= User.find(comment.user_id).email
 				br

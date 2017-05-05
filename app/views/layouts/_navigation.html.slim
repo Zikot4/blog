@@ -20,6 +20,6 @@ nav class="navbar navbar-default"
 				li
                     = link_to current_user.email, edit_user_registration_path
 				li
-					= image_tag current_user.image.url(:thumb)
+					= image_tag current_user.image.url(:thumb),class: "img-circle"
          		li
          			= link_to "Log out", destroy_user_session_path, method: :delete
